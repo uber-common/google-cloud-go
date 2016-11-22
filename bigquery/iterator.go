@@ -41,6 +41,11 @@ func newRowIterator(ctx context.Context, s service, pf pageFetcher) *RowIterator
 	return it
 }
 
+// A ValueIterator is an abstaction around a RowIterator that allows for testing.
+type ValueIterator interface {
+	Next(ValueLoader) error
+}
+
 // A RowIterator provides access to the result of a BigQuery lookup.
 type RowIterator struct {
 	ctx      context.Context
